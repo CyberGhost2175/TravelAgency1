@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tours</title>
+</head>
+<body>
+<header>
+    <h1>Travel Agency 'See the World!'</h1>
+
+    <nav>
+        <a href="#pop">Popular destinations</a> |
+        <a href="#tours">Tours</a> |
+        <a href="#hot-tours">Hot Tours</a> |
+        <a href="#about-company">About the company</a>
+    </nav>
+</header>
+
+<main>
+    <h1>HOTELS</h1>
+
+    <section class="tours">
+        <div class="container">
+            <div class="card" data-country="Egypt">
+                <h1>EGYPT</h1>
+            </div>
+            <div class="card" data-country="Turkey">
+                <h1>TURKEY</h1>
+            </div>
+            <div class="card" data-country="UAE">
+                <h1>UAE</h1>
+            </div>
+        </div>
+    </section>
+
+    <section id="hotels">
+        <h2>Hotels in <span id="selected-country"></span></h2>
+        <div id="hotel-list">
+        </div>
+    </section>
+</main>
+
+<script>
+    const hotelsData = {
+        Egypt: ["Hotel Cairo", "Pyramids Resort", "Nile Palace"],
+        Turkey: ["Istanbul Luxury", "Antalya Beach Resort", "Cappadocia Hotel"],
+        UAE: ["Burj Al Arab", "Atlantis The Palm", "Jumeirah Beach Hotel"],
+    };
+
+    document.querySelectorAll('.card').forEach(card => {
+        card.addEventListener('click', () => {
+            const country = card.getAttribute('data-country');
+            const hotelList = hotelsData[country] || [];
+
+            document.getElementById('selected-country').textContent = country;
+
+            const hotelListContainer = document.getElementById('hotel-list');
+            hotelListContainer.innerHTML = '';
+
+            hotelList.forEach(hotel => {
+                const hotelDiv = document.createElement('div');
+                hotelDiv.textContent = hotel;
+                hotelListContainer.appendChild(hotelDiv);
+            });
+        });
+    });
+</script>
+
+</body>
+</html>
